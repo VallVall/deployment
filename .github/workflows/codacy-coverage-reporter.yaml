@@ -1,11 +1,11 @@
-name: Pull request update
+name: Pull request
 
 on: ["pull_request"]
 
 jobs:
   upload-report:
     runs-on: ubuntu-latest
-    name: upload-report-job
+    name: Run tests, collect coverage, upload coverage
     steps:
       - name: "Checkout to another branch"
         uses: actions/checkout@v2

@@ -1,0 +1,10 @@
+name: Merge to main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  codacy-coverage-report:
+    name: Run tests, collect coverage, upload coverage
+    uses: ./.github/workflows/codacy-coverage-reporter.yaml
+    secrest: inherit

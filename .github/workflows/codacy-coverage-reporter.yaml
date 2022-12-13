@@ -1,6 +1,6 @@
 name: Pull request update
 
-on: ["push"]
+on: ["pull_request"]
 
 jobs:
   upload-report:

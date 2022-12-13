@@ -1,3 +1,3 @@
 import { sum } from "./src/utils/sum.js";
 
-console.log(sum(1, 2));
+console.log(sum(1, 2), 111);

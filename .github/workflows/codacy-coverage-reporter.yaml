@@ -1,0 +1,20 @@
+name: Pull request update
+
+on: ["push"]
+
+jobs:
+  upload-report:
+    runs-on: ubuntu-latest
+    name: upload-report-job
+    steps:
+      - name: "Checkout to another branch"
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Create coverage
+        run: npm test
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: covarage/lcov.info

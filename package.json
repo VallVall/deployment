@@ -8,7 +8,7 @@
     "prepare": "husky install",
     "check": "prettier --check src/**/*.js src/**/*.test.js",
     "format": "prettier --write src/**/*.js src/**/*.test.js",
-    "lint": "eslint src/**/*.js src/**/*.test.js"
+    "lint": "eslint src/**/*.js src/**/*.test.js --max-warnings=0"
   },
   "repository": {
     "type": "git",

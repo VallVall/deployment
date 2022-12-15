@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { sum } from './utils/sum.js';
 import { dublicate } from './utils/dublicate.js';
 

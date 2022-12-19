@@ -31,15 +31,18 @@ jobs:
       - name: Node version
         run: node --version
   parallel-job:
-    runs-on: ubuntu-latest
     name: Parallel job
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12, 14, 16]
     steps:
       - name: Checkout to another branch
         uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: npm install
       - name: Check formation

@@ -31,9 +31,7 @@ jobs:
       - name: Node version
         run: node --version
       - name: Event name
-        env:
-          EVENT_NAME: ${{ github.event }}
-        run: echo $EVENT_NAME
+        run: echo ${{ github.event }}
   parallel-job:
     name: Parallel job
     runs-on: ubuntu-latest

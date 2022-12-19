@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Node version
         run: node --version
+      - name: Event name
+        run: console.log(github.event)
   parallel-job:
     name: Parallel job
     runs-on: ubuntu-latest

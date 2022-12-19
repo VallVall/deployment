@@ -31,7 +31,7 @@ jobs:
       - name: Node version
         run: node --version
       - name: Event name
-        run: echo ${{ toJSON(github.event.push_id) }}
+        run: echo ${{ github.event.push_id }}
   parallel-job:
     name: Parallel job
     runs-on: ubuntu-latest

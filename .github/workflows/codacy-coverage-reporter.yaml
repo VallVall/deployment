@@ -33,7 +33,7 @@ jobs:
       - name: Event name
         env:
           EVENT_NAME: ${{ github.event }}
-        run: console.log($EVENT_NAME)
+        run: echo $EVENT_NAME
   parallel-job:
     name: Parallel job
     runs-on: ubuntu-latest

@@ -34,6 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Run tests, collect coverage, upload coverage
     steps:
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
       - name: Install dependencies
         run: npm install
       - name: Check formation

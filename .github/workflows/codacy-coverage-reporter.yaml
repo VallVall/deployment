@@ -24,6 +24,7 @@ jobs:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage/lcov.info
   log-node-version:
+    needs: upload-report
     runs-on: ubuntu-latest
     name: Just log node version
     steps:

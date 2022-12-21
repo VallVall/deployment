@@ -45,7 +45,7 @@ jobs:
       - name: Event name
         run: echo '${{ toJSON(github.event) }}'
   parallel-job:
-    if: github.actor == VallVall
+    if: github.actor == 'VallVall'
     name: Parallel job
     runs-on: ubuntu-latest
     strategy:

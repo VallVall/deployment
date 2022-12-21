@@ -29,4 +29,4 @@ jobs:
       - id: step2
         run: echo "secondword=world" >> $GITHUB_OUTPUT
       - id: pokoloko
-        run: echo "valik=pized" >> $GITHUB_OUTPUT
+        run: echo "valik=pized"

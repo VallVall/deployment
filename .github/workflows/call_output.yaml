@@ -12,4 +12,4 @@ jobs:
     needs: job1
     steps:
       - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
-      - run: echo ${{ need.jobs1.outputs.mmmmmmmm }}
+      - run: echo ${{ needs.jobs1.outputs.mmmmmmmm }}

@@ -10,6 +10,9 @@ on:
       secondword:
         description: 'The second output string'
         value: ${{ jobs.example_job.outputs.output2 }}
+      mmmmmmmm:
+        description: 'mmmmmmmm'
+        value: ${{ jobs.example_job.outputs.kala }}
 
 jobs:
   example_job:
@@ -19,8 +22,11 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
       output2: ${{ steps.step2.outputs.secondword }}
+      kala: ${{ steps.pokoloko.outputs.valik }}
     steps:
       - id: step1
         run: echo "firstword=hello" >> $GITHUB_OUTPUT
       - id: step2
         run: echo "secondword=world" >> $GITHUB_OUTPUT
+      - id: pokoloko
+        run: echo "valik=pized" >> $GITHUB_OUTPUT

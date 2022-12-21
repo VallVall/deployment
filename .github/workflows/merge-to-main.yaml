@@ -7,3 +7,4 @@ jobs:
   codacy-coverage-report:
     name: Run tests, collect coverage, upload coverage
     uses: ./.github/workflows/codacy-coverage-reporter.yaml
+    secrets: inherit

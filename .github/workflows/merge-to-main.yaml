@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      TEST: ${{ secrets.TEST }}
+      VALIK: ${{ secrets.VALIK }}
     steps:
       - name: Call echo command
-        run: echo '$TEST'
+        run: echo $VALIK
   codacy-coverage-report:
     name: Run tests, collect coverage, upload coverage
     uses: ./.github/workflows/codacy-coverage-reporter.yaml

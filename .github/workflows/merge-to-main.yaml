@@ -12,7 +12,7 @@ jobs:
       TEST: ${{ secrets.TEST }}
     steps:
       - name: Call echo command
-        run: 'echo $TEST'
+        run: echo '$TEST'
   codacy-coverage-report:
     name: Run tests, collect coverage, upload coverage
     uses: ./.github/workflows/codacy-coverage-reporter.yaml

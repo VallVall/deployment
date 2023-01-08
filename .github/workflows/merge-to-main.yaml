@@ -6,6 +6,7 @@ on:
 jobs:
   test-env:
     name: Show env
+    runs-on: ubuntu-latest
     environment: production
     env:
       QA_ENV_FILE: ${{ secrets.TEST }}

@@ -4,6 +4,12 @@ on:
     branches:
       - main
 jobs:
+  test-env:
+    name: Show env
+    environment: production
+    env:
+      QA_ENV_FILE: ${{ secrets.TEST }}
+    run: 'echo $QA_ENV_FILE'
   codacy-coverage-report:
     name: Run tests, collect coverage, upload coverage
     uses: ./.github/workflows/codacy-coverage-reporter.yaml

@@ -8,11 +8,9 @@ jobs:
     name: Show env
     runs-on: ubuntu-latest
     environment: production
-    env:
-      QA_ENV_FILE: ${{ secrets.TEST }}
     steps:
       - name: Call echo command
-        run: 'echo $QA_ENV_FILE'
+        run: 'echo ${{ secrets.TEST }}'
   codacy-coverage-report:
     name: Run tests, collect coverage, upload coverage
     uses: ./.github/workflows/codacy-coverage-reporter.yaml

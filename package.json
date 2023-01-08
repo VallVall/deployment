@@ -47,5 +47,8 @@
         "statements": 90
       }
     }
+  },
+  "dependencies": {
+    "firebase-tools": "^11.20.0"
   }
 }

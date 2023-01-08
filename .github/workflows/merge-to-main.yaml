@@ -4,10 +4,20 @@ on:
     branches:
       - main
 jobs:
-  test-env:
-    name: Show env
+  production-env:
+    name: Show env production
     runs-on: ubuntu-latest
     environment: production
+    env:
+      VALIK: ${{ secrets.VALIK }}
+    steps:
+      - name: Call echo command
+        run: echo $VALIK
+  development-env:
+    name: Show env development
+    needs: production-env
+    runs-on: ubuntu-latest
+    environment: development
     env:
       VALIK: ${{ secrets.VALIK }}
     steps:

@@ -9,7 +9,7 @@
     "check": "prettier --check src/**/*.js src/**/*.test.js",
     "format": "prettier --write src/**/*.js src/**/*.test.js",
     "lint": "eslint src/**/*.js --max-warnings=0",
-    "build": "npx webpack-cli build"
+    "build": "webpack-cli build"
   },
   "repository": {
     "type": "git",

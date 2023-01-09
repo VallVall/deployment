@@ -5,13 +5,14 @@ on:
       - main
 jobs:
   codacy-coverage-report:
-    - name: Run tests, collect coverage, upload coverage
-      uses: ./.github/workflows/build.yaml
-      secrets: inherit
-    - name: Deploy to firebase
-      uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        repoToken: '${{ secrets.GITHUB_TOKEN }}'
-        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEPLOYMENT_8C0FF }}'
-        channelId: live
-        projectId: deployment-8c0ff
+    steps:
+      - name: Run tests, collect coverage, upload coverage
+        uses: ./.github/workflows/build.yaml
+        secrets: inherit
+      - name: Deploy to firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEPLOYMENT_8C0FF }}'
+          projectId: deployment-8c0ff
+          channelId: live

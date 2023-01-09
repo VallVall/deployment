@@ -1,10 +1,13 @@
-name: Pull request
-run-name: Pull request
-on: pull_request
+name: Merge to develop
+run-name: Merge to develop
+on:
+  push:
+    branches:
+      - develop
 jobs:
   upload-report:
     runs-on: ubuntu-latest
-    environment: development
+    environment: production
     name: Run tests, collect coverage, upload coverage, deploy
     steps:
       - name: Checkout to another branch
@@ -33,9 +36,8 @@ jobs:
         run: npm run test
       - name: Build project
         run: npm run build:development
-      - name: 'Deploy'
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEPLOYMENT_8C0FF }}'
-          projectId: deployment-8c0ff
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/lcov.info

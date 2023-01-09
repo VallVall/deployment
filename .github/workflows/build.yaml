@@ -1,6 +1,6 @@
 name: Pull request
 run-name: ${{ github.actor }} is learning GitHub Actions!!
-on: ['pull_request', 'workflow_call']
+on: workflow_call
 jobs:
   upload-report:
     runs-on: ubuntu-latest

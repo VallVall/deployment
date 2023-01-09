@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   build:
     name: Run tests, collect coverage, upload coverage
-    uses: ./.github/workflows/buil.yaml
+    uses: ./.github/workflows/build.yaml
     secrets: inherit
   deploy:
     name: Run tests, collect coverage, upload coverage

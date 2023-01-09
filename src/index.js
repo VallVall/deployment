@@ -9,6 +9,6 @@ console.log(dublicate('hello'));
 
 const paragraph = document.createElement('p');
 
-paragraph.textContent = `Mode is ${process.env.MODE}`;
+paragraph.textContent = `Mode is ${process.env.MODE}, base url is: ${process.env.BASE_URL}`;
 
 document.body.append(paragraph);

@@ -6,11 +6,7 @@ jobs:
     uses: ./.github/workflows/buil.yaml
     secrets: inherit
   deploy:
-    name: Deploy to firebase
+    name: Run tests, collect coverage, upload coverage
     needs: build
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    uses: FirebaseExtended/action-hosting-deploy@v0
-    with:
-      repoToken: '${{ secrets.GITHUB_TOKEN }}'
-      firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEPLOYMENT_8C0FF }}'
-      projectId: deployment-8c0ff
+    uses: ./.github/workflows/firebase-hosting-pull-request.yaml
+    secrets: inherit

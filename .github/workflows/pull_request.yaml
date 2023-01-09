@@ -4,6 +4,7 @@ on: pull_request
 jobs:
   upload-report:
     runs-on: ubuntu-latest
+    environment: development
     name: Run tests, collect coverage, upload coverage, deploy
     steps:
       - name: Checkout to another branch

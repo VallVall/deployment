@@ -9,6 +9,8 @@ console.log(sum(1, 2));
 
 console.log(dublicate('hello'));
 
+console.log('process.env.MODE', process.env.VALIK);
+
 const paragraph = document.createElement('p');
 
 paragraph.textContent = `Mode is ${process.env.MODE}`;

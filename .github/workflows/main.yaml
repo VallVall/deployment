@@ -34,7 +34,7 @@ jobs:
       - name: Create coverage
         run: npm run test
       - name: Build project
-        run: npm run build:development
+        run: npm run build:production
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1
         with:

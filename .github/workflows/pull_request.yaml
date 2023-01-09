@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   build:
     name: Run tests, collect coverage, upload coverage
-    uses: ./.github/workflows/codacy-coverage-reporter.yaml
+    uses: ./.github/workflows/buil.yaml
     secrets: inherit
   deploy:
     name: Deploy to firebase

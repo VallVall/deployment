@@ -3,11 +3,11 @@ on: pull_request
 jobs:
   codacy-coverage-report:
     secrets: inherit
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     steps:
       - name: Run tests, collect coverage, upload coverage
         uses: ./.github/workflows/build.yaml
       - name: Deploy to firebase
+        if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

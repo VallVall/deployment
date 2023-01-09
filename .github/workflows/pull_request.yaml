@@ -1,12 +1,45 @@
-name: Merge to main
+name: Pull request
+run-name: ${{ github.actor }} is learning GitHub Actions!!
 on: pull_request
 jobs:
-  build:
-    name: Run tests, collect coverage, upload coverage
-    uses: ./.github/workflows/build.yaml
-    secrets: inherit
-  deploy:
-    name: Run tests, collect coverage, upload coverage
-    needs: build
-    uses: ./.github/workflows/firebase-hosting-pull-request.yaml
-    secrets: inherit
+  upload-report:
+    runs-on: ubuntu-latest
+    name: Run tests, collect coverage, upload coverage, deploy
+    steps:
+      - name: Checkout to another branch
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: npm install
+      - name: Check formation
+        run: npm run check
+      - name: Create coverage
+        run: npm run test
+      - name: Build project
+        run: npm run build
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/lcov.info
+      - name: 'Deploy'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEPLOYMENT_8C0FF }}'
+          projectId: deployment-8c0ff

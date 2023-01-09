@@ -1,4 +1,5 @@
 name: Merge to main
+run-name: Merge to main
 on:
   push:
     branches:

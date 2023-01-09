@@ -10,7 +10,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Deployment learning',
       template: './src/index.html',
     }),
   ],

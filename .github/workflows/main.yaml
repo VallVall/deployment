@@ -1,10 +1,13 @@
-name: Pull request
-run-name: ${{ github.actor }} is learning GitHub Actions!!
-on: ['pull_request', 'workflow_call']
+name: Merge to main
+run-name: Merge to main
+on:
+  push:
+    branches:
+      - main
 jobs:
   upload-report:
     runs-on: ubuntu-latest
-    name: Run tests, collect coverage, upload coverage
+    name: Run tests, collect coverage, upload coverage, deploy
     steps:
       - name: Checkout to another branch
         uses: actions/checkout@v2
@@ -30,39 +33,17 @@ jobs:
         run: npm run check
       - name: Create coverage
         run: npm run test
+      - name: Build project
+        run: npm run build:development
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage/lcov.info
-  log-node-version:
-    name: Just log node version
-    needs: upload-report
-    runs-on: ubuntu-latest
-    steps:
-      - name: Node version
-        run: node --version
-      - name: Event name
-        run: echo '${{ toJSON(github.event) }}'
-  parallel-job:
-    if: github.actor == 'VallVall'
-    name: Parallel job
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [14, 16]
-    steps:
-      - name: Checkout to another branch
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: 'Deploy'
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          node-version: ${{ matrix.node }}
-      - name: Install dependencies
-        run: npm install
-      - name: Check formation
-        run: npm run check
-      - name: Create coverage
-        run: npm run test
-      - name: Node version
-        run: node --version
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEPLOYMENT_8C0FF }}'
+          channelId: live
+          projectId: deployment-8c0ff

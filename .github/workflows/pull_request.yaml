@@ -2,11 +2,11 @@ name: Merge to main
 on: pull_request
 jobs:
   codacy-coverage-report:
+    secrets: inherit
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     steps:
       - name: Run tests, collect coverage, upload coverage
         uses: ./.github/workflows/build.yaml
-        secrets: inherit
       - name: Deploy to firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:

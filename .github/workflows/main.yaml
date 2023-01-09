@@ -5,10 +5,10 @@ on:
       - main
 jobs:
   codacy-coverage-report:
+    secrets: inherit
     steps:
       - name: Run tests, collect coverage, upload coverage
         uses: ./.github/workflows/build.yaml
-        secrets: inherit
       - name: Deploy to firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:

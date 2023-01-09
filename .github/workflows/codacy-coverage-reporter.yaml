@@ -35,34 +35,3 @@ jobs:
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage/lcov.info
-  log-node-version:
-    name: Just log node version
-    needs: upload-report
-    runs-on: ubuntu-latest
-    steps:
-      - name: Node version
-        run: node --version
-      - name: Event name
-        run: echo '${{ toJSON(github.event) }}'
-  parallel-job:
-    if: github.actor == 'VallVall'
-    name: Parallel job
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [14, 16]
-    steps:
-      - name: Checkout to another branch
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Install dependencies
-        run: npm install
-      - name: Check formation
-        run: npm run check
-      - name: Create coverage
-        run: npm run test
-      - name: Node version
-        run: node --version
